@@ -69,6 +69,21 @@ git init
 git remote -v
 git remote add
 
-#checking git branch if not create it 
+#addiding git so it can track all files 
+git add .
+
+#checking git branch if not create it and branch will only occur when you do your first commit.
 git branch
-git branch newbranch
+git branch newbran
+
+#commiting my first commmit 
+git commit -m "initial commit"
+
+#check status of files any untracked file so you can add and commit again use git status
+git status
+
+#git log and --oneline
+to check for git commits 
+
+#pushing code to github
+git push -u origin main
