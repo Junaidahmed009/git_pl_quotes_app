@@ -12,5 +12,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: testing pipeline
-        run: echo "hello world"
+      # - name: testing pipeline
+      #   run: echo "hello world"
+        - name: checkout repository
+          uses: actions/checkout@v7 #lateset version of checkout action
+        - name: printing path of the repo
+          run:  pwd
+        - name: printing the list of files in the repo
+          run: ls -a 
