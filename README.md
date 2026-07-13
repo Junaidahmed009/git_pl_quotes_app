@@ -13,8 +13,7 @@ Follow the steps below to set up and run both the backend and frontend locally.
 ## 🖥️ 1. Clone the Repository
 
 ```bash
-git clone https://github.com/TonyStark-19/nodejs-fullstack-practice.git
-
+git clone 
 cd nodejs-fullstack-practice
 ```
 
