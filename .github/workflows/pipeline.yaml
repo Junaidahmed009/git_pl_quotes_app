@@ -1,5 +1,6 @@
+#phase: 1
 name: pipeline
-
+#making the pipeline to run on push and pull request events on main branch
 on:
   push:
     branches:
@@ -8,15 +9,35 @@ on:
     branches:
       - main
 
+#creating a job to run on ubuntu-latest environment
+#action is predefined workflow which is used to perform some tasks in the pipeline. We can use actions from github marketplace or we can create our own actions.
+#actions checkout used to check the repository and get the code from the repo to run the pipeline on machine.
+#phase 2
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # - name: testing pipeline
+      - name: checkout repository
+        uses: actions/checkout@v7 #lateset version of checkout action
+      - name: setup node
+        uses: actions/setup-node@v3 #used setupnode action to setup node environment  --phase 3
+        with:
+          node-version: '18'  #based on projects we have to ask developers to use the node version
+      - name: checking node version
+        run: node -v  
+      - name: installing dependencies frontend # phase 4
+        working-directory: frontend # this is used to tell the pipeline to run the command in frontend directory
+        run: npm ci #npm ci is used to install the dependencies based on package-lock.json file.if file isnt present then it will throw error.
+        working-directory: backend
+        run: npm ci
+
+
+
+
+
+# - name: testing pipeline
       #   run: echo "hello world"
-        - name: checkout repository
-          uses: actions/checkout@v7 #lateset version of checkout action
-        - name: printing path of the repo
-          run:  pwd
-        - name: printing the list of files in the repo
-          run: ls -a 
+       # - name: printing path of the repo
+        #   run:  pwd
+        # - name: printing the list of files in the repo
+        #   run: ls -a 
