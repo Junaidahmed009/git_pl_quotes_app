@@ -28,6 +28,7 @@ jobs:
       - name: installing dependencies frontend # phase 4
         working-directory: frontend # this is used to tell the pipeline to run the command in frontend directory
         run: npm ci #npm ci is used to install the dependencies based on package-lock.json file.if file isnt present then it will throw error.
+      - name: installing dependencies backend
         working-directory: backend
         run: npm ci
 
