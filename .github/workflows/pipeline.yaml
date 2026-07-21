@@ -42,6 +42,14 @@ jobs:
         run: npm test
       - name: testing pipeline
         run: echo "test passed"
+      - name: build frontend #phase 6 building the frontend code to generate the build folder which will be used to deploy the code to production.
+        working-directory: frontend
+        run: npm run build
+
+
+
+
+
       # - name: running linting backend
       #   working-directory: backend
       #   run: npm run lint
