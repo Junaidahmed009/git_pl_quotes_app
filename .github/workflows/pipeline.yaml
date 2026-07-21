@@ -22,7 +22,7 @@ jobs:
       - name: setup node
         uses: actions/setup-node@v3 #used setupnode action to setup node environment  --phase 3
         with:
-          node-version: '18'  #based on projects we have to ask developers to use the node version
+          node-version: '24'  #based on projects we have to ask developers to use the node version
       - name: checking node version
         run: node -v  
       - name: installing dependencies frontend # phase 4
@@ -45,6 +45,10 @@ jobs:
       - name: build frontend #phase 6 building the frontend code to generate the build folder which will be used to deploy the code to production.
         working-directory: frontend
         run: npm run build
+      - name: checking docker installation
+        run: |
+          docker --version
+          docker info
 
 
 
