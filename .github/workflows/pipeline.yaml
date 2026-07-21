@@ -34,6 +34,14 @@ jobs:
       - name: running linting frontend
         working-directory: frontend
         run: npm run lint #lint is used to check the code quality and formatting of the code. It will throw error if there is any issue in the code. or any unused code.
+      - name: running tests frontend #phase 5 running tests.
+        working-directory: frontend
+        run: npm test
+      - name: running tests backend
+        working-directory: backend
+        run: npm test
+      - name: testing pipeline
+        run: echo "test passed"
       # - name: running linting backend
       #   working-directory: backend
       #   run: npm run lint
