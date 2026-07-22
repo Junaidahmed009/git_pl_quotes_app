@@ -76,8 +76,32 @@ jobs:
           tags: |
             rajajunaiddev/frontend:latest
             rajajunaiddev/frontend:${{ github.sha }}
+      - name: Deploy to EC2 #phase 8 deploying the code to ec2 instance using ssh action.
+        uses: appleboy/ssh-action@v1.2.4
+        with:
+          host: ${{ secrets.AWS_UBUNTU_IP }}
+          username: ${{ secrets.AWS_UBUNTU_USERNAME }}
+          key: ${{ secrets.UBUNTU_PRIVATE_SSH_KEY }}
+          # port: ${{ secrets.EC2_PORT }}
+          script: |
+            docker pull rajajunaiddev/backend:latest
+            docker pull rajajunaiddev/frontend:latest
 
+            docker stop frontendd-container || true
+            docker rm frontendd-container || true
 
+            docker stop backend-container || true
+            docker rm backend-container || true
+
+            docker run -d \
+              --name backend-updated \
+              -p 3001:3001 \
+              rajajunaiddev/backend:latest
+
+            docker run -d \
+              --name frontend-updated \
+              -p 5173:5173 \
+              rajajunaiddev/frontend:latest
       # - name: running linting backend
       #   working-directory: backend
       #   run: npm run lint
