@@ -49,10 +49,12 @@ jobs:
         run: |
           docker --version
           docker info
-
-
-
-
+      - name: build frontend docker image
+        working-directory: frontend
+        run: docker build -t rajajunaiddev/frontend:latest .
+      - name: build backend docker image
+        working-directory: backend
+        run: docker build -t rajajunaiddev/backend:latest .
 
       # - name: running linting backend
       #   working-directory: backend
