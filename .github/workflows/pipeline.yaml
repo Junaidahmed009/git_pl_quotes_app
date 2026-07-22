@@ -45,10 +45,10 @@ jobs:
       - name: build frontend #phase 6 building the frontend code to generate the build folder which will be used to deploy the code to production.
         working-directory: frontend
         run: npm run build
-      - name: checking docker installation
-        run: |
-          docker --version
-          docker info
+      # - name: checking docker installation
+      #   run: |
+      #     docker --version
+      #     docker info
       # - name: build frontend docker image #building docker images. i added dockerfile and .dockerignore in both frontend and backend folders.
       #   working-directory: frontend
       #   run: docker build -t rajajunaiddev/frontend:latest .
@@ -79,7 +79,7 @@ jobs:
       - name: Deploy to EC2 #phase 8 deploying the code to ec2 instance using ssh action.
         uses: appleboy/ssh-action@v1.2.4
         with:
-          host: ${{ secrets.AWS_UBUNTU_IP }}
+          host: ${{ secrets.AWS_UBUNTU_HOST }}
           username: ${{ secrets.AWS_UBUNTU_USERNAME }}
           key: ${{ secrets.UBUNTU_PRIVATE_SSH_KEY }}
           # port: ${{ secrets.EC2_PORT }}
